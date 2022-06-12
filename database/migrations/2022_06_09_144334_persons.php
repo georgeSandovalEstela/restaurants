@@ -15,7 +15,8 @@ class Persons extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->id();
-            $table->foreing('document_type_id')->references('id')->on('documents_type');
+            $table->unsignedBiginteger('document_type_id');
+            $table->foreign('document_type_id')->references('id')->on('documentstypes');
             $table->string('document');
             $table->string('name');
             $table->string('lastname');

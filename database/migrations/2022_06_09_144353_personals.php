@@ -15,12 +15,14 @@ class Personals extends Migration
     {
         Schema::create('personals', function (Blueprint $table) {
             $table->id();
-            $table->foreing('persons_id')->references('id')->on('persons');
-            $table->foreing('personals_type_id')->references('id')->on('personals_type');
-            $table->timestamp('salary_date');
-            $table->timestamp('contract_at');
-            $table->timestamp('renovation_at');
-            $table->timestamp('final_contract_at');
+            $table->unsignedBiginteger('persons_id');
+            $table->unsignedBiginteger('personals_type_id');
+            $table->foreign('persons_id')->references('id')->on('persons');
+            $table->foreign('personals_type_id')->references('id')->on('personalstypes');
+            $table->integer('salary_day');
+            $table->timestamp('contract_date')->nullable();
+            $table->timestamp('renovation_at')->nullable();
+            $table->timestamp('final_contract_at')->nullable();
             $table->timestamps();
             $table->integer('state')->default(1);
         });
